@@ -157,18 +157,18 @@ while True:
             #         del stationary[i]
 
 
-        # Iterate over stationary objects and check if they have been there
-        # for more than 2 seconds, if so, draw their bounding box
-        for i in list(stationary.keys()):
-            if time.time() - stationary[i]['last_seen'] > 1:
-                # draw bounding box and text
-                (x, y, w, h) = stationary[i]['position']
-                classID = stationary[i]['classID']
-                color = [int(c) for c in COLORS[classID]]
-                cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
-            # If the object has not been seen for 2 seconds, remove it
-            elif time.time() - stationary[i]['last_seen'] > 2:
-                del stationary[i]
+    # Iterate over stationary objects and check if they have been there
+    # for more than 2 seconds, if so, draw their bounding box
+    for i in list(stationary.keys()):
+        if time.time() - stationary[i]['last_seen'] > 1:
+            # draw bounding box and text
+            (x, y, w, h) = stationary[i]['position']
+            classID = stationary[i]['classID']
+            color = [int(c) for c in COLORS[classID]]
+            cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
+        # If the object has not been seen for 2 seconds, remove it
+        elif time.time() - stationary[i]['last_seen'] > 2:
+            del stationary[i]
 
         # extract the bounding box coordinates
         # (x, y) = (boxes[i][0], boxes[i][1])
